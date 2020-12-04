@@ -21,7 +21,6 @@ class Item {
     // get dueDate() {
     //     return this._dueDate;
     // }
-
+    
 }
-
 export default Item;
