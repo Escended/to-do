@@ -1,0 +1,51 @@
+#content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    min-width: 300px;
+    max-width: 500px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    border: 1px solid;
+    
+}
+#title {
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    border-bottom: 3px solid;
+    padding: 5px;
+}
+
+#navbar {
+    /* justify-self: left; */
+    align-self: left;
+    width: 29%;
+    text-align: center;
+}
+
+#taskView {
+    width: 70%;
+    height: 500px;
+    border-left: 2px solid;
+    align-self: flex-end;
+    
+}
+
+#projectsView {
+    display: flex;
+    flex-direction: column;
+}
+
+.project {
+    margin: 5px;
+    border-bottom: 1px solid;
+}
+.project:hover {
+    cursor: pointer;
+}
+
+.projectBtn {
+    margin: 5px;
+}

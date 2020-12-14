@@ -6,6 +6,7 @@ class Item {
         this.dueDate = dueDate;
         this.description = '';
         this.priority = 'low';
+        this.id = null;
     }
     get name() {
         return this._name;
@@ -13,7 +14,7 @@ class Item {
 
     set name(value) {
         if (value.length > 10 || value.length < 2) {
-            return;
+            return this._name = "Too long";
         }
         this._name = value;
     }
