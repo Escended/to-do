@@ -18,7 +18,7 @@ class DOMController {
         this.navbar.id = 'navbar';
         //this.navbar.textContent = 'Navbar';
         
-        this.navbar.append(this.addProjectButton(), this.CreateProjectsView())
+        this.navbar.append(this.addProjectButton('Add Project'), this.CreateProjectsView())
         return this.navbar;
     }
 
@@ -29,15 +29,15 @@ class DOMController {
         return this.projects;
     }
     // Add a new project to the project view
-    addProjectButton() {
+    addProjectButton(name) {
         const btn = document.createElement('button');
         btn.classList.add('projectBtn');
-        btn.textContent = 'Add Project';
+        btn.textContent = name;
         return btn
     }
 
     addProject(project) {
-        console.log(this.projects)
+        //console.log(this.projects)
         const proj = document.createElement('div');
         proj.classList.add('project');
         proj.textContent = project.name;
@@ -48,9 +48,11 @@ class DOMController {
     createTaskView() {
         this.taskView = document.createElement('div');
         this.taskView.id = 'taskView';
-        this.taskView.textContent = 'Tasks';
+        //this.taskView.textContent = 'Tasks';
 
         const placeholder = document.createElement('div');
+        placeholder.classList.add('placeholder');
+        placeholder.textContent = "Open a project to view tasks"
         this.taskView.appendChild(placeholder);
 
         return this.taskView;
@@ -58,10 +60,27 @@ class DOMController {
     
     displayTasks(taskList) {
         const tasks = document.createElement('div');
-        console.log(taskList + "hi");
         taskList.forEach(task => {
             let item = document.createElement('div');
-            item.textContent = `${task.id} ${task.name} ${task.priority} ${task.dueDate}`;
+            item.classList.add('task')
+
+            const t = document.createElement('div');
+            t.classList.add('taskDesc')
+            const taskName = document.createElement('div')
+            taskName.textContent = task.name;
+            const taskDueDate = document.createElement('div');
+            taskDueDate.textContent = task.dueDate;
+            t.append(taskName, taskDueDate);
+
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('bn632-hover', 'bn26');
+            editBtn.textContent = '...';
+
+            const delBtn = document.createElement('button');
+            delBtn.classList.add('bn632-hover', 'bn27');
+            delBtn.textContent = 'x';
+
+            item.append(t, editBtn, delBtn);
             tasks.appendChild(item);
         });
         this.taskView.appendChild(tasks);

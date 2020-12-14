@@ -8,7 +8,7 @@
     /* justify-content: center; */
     /* align-items: center; */
     border: 1px solid;
-    
+    border-radius: 10px;
 }
 #title {
     align-self: center;
@@ -30,12 +30,26 @@
     height: 500px;
     border-left: 2px solid;
     align-self: flex-end;
-    
+    overflow: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+#taskView::-webkit-scrollbar {
+    display: none;
 }
 
 #projectsView {
     display: flex;
     flex-direction: column;
+}
+
+.taskDesc {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-right: 40px;
+    width: 150px;
 }
 
 .project {
@@ -48,4 +62,94 @@
 
 .projectBtn {
     margin: 5px;
+}
+
+.task {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.editBtn {
+    margin-left: 10px;
+}
+
+.delBtn {
+    /* margin-left: 10px; */
+    width: 50px
+}
+
+.placeholder {
+    margin-top: 60%;
+    text-align: center;
+}
+
+
+.btn41-43 {
+    padding: 5px 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    background: transparent;
+    outline: none !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.bn632-hover {
+    width: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 25px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+    outline: none;
+}
+
+.bn632-hover.bn27 {
+    margin-left: 1px;
+    background-image: linear-gradient(
+    to right,
+    #ed6ea0,
+    #ec8c69,
+    #f7186a,
+    #fbb03b
+    );
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.bn632-hover.bn26 {
+    margin-left: 55px;
+    background-image: linear-gradient(
+        to right,
+        #25aae1,
+        #4481eb,
+        #04befe,
+        #3f86ed
+    );
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }
