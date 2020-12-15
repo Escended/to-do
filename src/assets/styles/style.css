@@ -1,10 +1,17 @@
+html {
+    background: whitesmoke;
+}
+body {
+    min-width: 350px;
+}
+
 #content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
     min-width: 300px;
-    max-width: 500px;
+    max-width: 600px;
     /* justify-content: center; */
     /* align-items: center; */
     border: 1px solid;
@@ -27,7 +34,7 @@
 
 #taskView {
     width: 70%;
-    height: 500px;
+    height: 800px;
     border-left: 2px solid;
     align-self: flex-end;
     overflow: scroll;
@@ -103,7 +110,7 @@
 
 .bn632-hover {
     width: 50px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     color: #fff;
     cursor: pointer;
@@ -152,4 +159,44 @@
         #3f86ed
     );
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+.modal {
+    display: none;
+    position: fixed; 
+    padding-top: 50px;
+    left: 0; 
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+.modal-content {
+    position: relative; 
+    background-color: white;
+    padding: 20px; 
+    margin: auto; 
+    width: 300px;  
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+.close-btn {
+    float: right; 
+    color: lightgray; 
+    font-size: 24px;  
+    font-weight: bold;
+}
+.close-btn:hover {
+    color: darkgray;
+}
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
 }
