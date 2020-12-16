@@ -19,7 +19,9 @@ class DOMController {
         this.navbar.id = 'navbar';
         //this.navbar.textContent = 'Navbar';
         
-        this.navbar.append(this.addProjectButton('Add Project'), this.CreateProjectsView())
+        const addProject = this.addProjectButton('Add Project');
+        addProject.classList.add('bn632-hover', 'bn26', 'addProjectBtn');
+        this.navbar.append(addProject, this.CreateProjectsView())
         return this.navbar;
     }
 
@@ -75,7 +77,7 @@ class DOMController {
 
             const editBtn = document.createElement('button');
             editBtn.classList.add('bn632-hover', 'bn26');
-            editBtn.textContent = '...';
+            editBtn.innerHTML = '&hellip;';
 
             const delBtn = document.createElement('button');
             delBtn.classList.add('bn632-hover', 'bn27');
@@ -88,14 +90,16 @@ class DOMController {
         const addTaskBtn = this.addProjectButton('Add Task')
         addTaskBtn.id = 'modal-btn';
         
-        addTaskBtn.classList.add('addTaskBtn');
+        addTaskBtn.classList.add('bn632-hover', 'bn26', 'addTaskBtn');
         this.taskView.append(addTaskBtn, tasks);
     }
+
     createModalBtn() {
         const modalBtn = this.addProjectButton('Modal');
         modalBtn.id = 'modal-btn';
         return modalBtn;
     }
+
     createModalView(taskName) {
 
         const modal = document.createElement('div');
@@ -110,30 +114,50 @@ class DOMController {
 
         const content = document.createElement('p');
         content.textContent = taskName;
-
+        const addBtn = this.addProjectButton('Add');
+        addBtn.classList.add('bn632-hover', 'bn26', 'form-btn');
         modalContent.append(
             closeBtn, 
             content,
-            this.createTaskInputs('Type a todo...'),
-            this.createTaskInputs('Description...'),
+            this.createTaskInputs('Type a todo...', 'Name'),
+            this.createTaskInputs('Description...', 'Description'),
             this.createDropDownInput(),
+            this.createDateInput(),
+            addBtn,
             );
 
         modal.appendChild(modalContent);
         return modal;
     }
 
-    createTaskInputs(dummyText) {
+    // general input box  
+    createTaskInputs(dummyText, name) {
         const inputContainer = document.createElement('div');
+        inputContainer.classList.add('input-box');
+        
+        const title = document.createElement('p');
+        title.textContent = name;
+        title.classList.add('input-styling');
+
         const input = document.createElement('input');
+        input.classList.add('input-styling-box');
         input.placeholder = dummyText;
-        inputContainer.append(input);
+        inputContainer.append(title, input);
         return inputContainer;
     }
 
     createDropDownInput() {
+        const container = document.createElement('div');
+        
+        container.classList.add('input-box');
         const priority = document.createElement('SELECT');
-        priority.setAttribute('id', 'taskInputs')
+        priority.setAttribute('id', 'taskInputs');
+
+
+        const title = document.createElement('p');
+        title.textContent = 'Priority';
+        title.classList.add('input-styling');
+
 
         const low = document.createElement('option');
         low.setAttribute('value', 'low');
@@ -147,12 +171,21 @@ class DOMController {
         high.setAttribute('value', 'high');
         high.textContent = "high";
         priority.append(low, medium, high);
-
-        return priority;
+        container.append(title, priority);
+        return container;
     }
 
-    getInputValues() {
+    createDateInput() {
+        const date = document.createElement('div');
+        date.classList.add('input-box');
+        const title = document.createElement('p');
+        title.textContent = 'Date';
+        title.classList.add('input-styling');
 
+        const timeInput = document.createElement('INPUT');
+        timeInput.setAttribute('type', 'date');
+        date.append(title, timeInput);
+        return date;
     }
 
     render() {

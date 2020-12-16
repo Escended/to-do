@@ -10,19 +10,26 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
-    min-width: 300px;
+    min-width: 500px;
     max-width: 600px;
     /* justify-content: center; */
     /* align-items: center; */
     border: 1px solid;
-    border-radius: 10px;
+    background-color: #422680;
+    color: white;
 }
 #title {
     align-self: center;
     text-align: center;
+    font-size: 40px;
     width: 100%;
+    
     border-bottom: 3px solid;
-    padding: 5px;
+    padding: 20px;
+    background-color: #280659;
+    /* background-color: #341671; */
+    color: white;
+    
 }
 
 #navbar {
@@ -30,11 +37,14 @@ body {
     align-self: left;
     width: 29%;
     text-align: center;
+    background-color: #341671;
+    /* min-width: 170px; */
 }
 
 #taskView {
     width: 70%;
     height: 800px;
+    /* min-width: 413px; */
     border-left: 2px solid;
     align-self: flex-end;
     overflow: scroll;
@@ -44,6 +54,7 @@ body {
 }
 #taskView::-webkit-scrollbar {
     display: none;
+    
 }
 
 #projectsView {
@@ -57,6 +68,7 @@ body {
     margin: 20px;
     margin-right: 40px;
     width: 150px;
+    
 }
 
 .project {
@@ -79,6 +91,8 @@ body {
     margin: 10px;
     border: 1px solid;
     border-radius: 10px;
+    /* background-color: #653cf7; */
+    background-color: #280659;
 }
 
 .editBtn {
@@ -89,12 +103,24 @@ body {
     /* margin-left: 10px; */
     width: 50px
 }
+.addTaskBtn {
+    width: 100px !important;
+    height: 30px !important;
+    font-size: 15px !important;
+    margin: 20px 0px 30px 38% !important;
+}
+
+.addProjectBtn {
+    width: 100px !important;
+    height: 30px !important;
+    font-size: 15px !important;
+    margin-left: 20px !important;
+}
 
 .placeholder {
     margin-top: 60%;
     text-align: center;
 }
-
 
 .btn41-43 {
     padding: 5px 15px;
@@ -109,7 +135,7 @@ body {
 }
 
 .bn632-hover {
-    width: 50px;
+    width: 30px;
     font-size: 20px;
     font-weight: 600;
     color: #fff;
@@ -119,7 +145,7 @@ body {
     text-align:center;
     border: none;
     background-size: 300% 100%;
-    border-radius: 50px;
+    border-radius: 10px;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
@@ -138,6 +164,33 @@ body {
     outline: none;
 }
 
+.input-box {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+    height: 30px;
+}
+.input-styling {
+    width: 50%;
+}
+
+.input-styling-box {
+    font-size: 15px;
+    width: 50%;
+}
+
+#taskInputs {
+    width: 62%;
+}
+
+.form-btn{
+    margin-left: 116px !important;
+    text-align: center;
+    font-size: 18px !important;
+    width: 50px !important;
+    height: 30px !important;
+}
+
 .bn632-hover.bn27 {
     margin-left: 1px;
     background-image: linear-gradient(
@@ -147,7 +200,7 @@ body {
     #f7186a,
     #fbb03b
     );
-    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+    box-shadow: 2px 2px 5px 0 rgba(236, 116, 149, 0.75);
 }
 .bn632-hover.bn26 {
     margin-left: 55px;
@@ -158,10 +211,11 @@ body {
         #04befe,
         #3f86ed
     );
-    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+    box-shadow: 2px 2px 5px 0 rgba(65, 132, 234, 0.75);
 }
 
 .modal {
+    color: black;
     display: none;
     position: fixed; 
     padding-top: 50px;
