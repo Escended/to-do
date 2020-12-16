@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Handlee';
+    src: url('../fonts/Handlee-Regular.ttf') format('truetype');
+    /* font-weight: 100; */
+    font-style: normal;
+  }
+
 html {
     background: whitesmoke;
 }
@@ -167,12 +174,35 @@ body {
 .input-box {
     display: flex;
     margin: 10px;
+    margin-bottom: 20px;
     width: 100%;
     height: 30px;
 }
 .input-styling {
     width: 50%;
 }
+#time, #description, #name, #dropdown {
+    margin-top: 10px;
+}
+
+#dropdown:hover, #time:hover {
+    cursor: pointer;
+}
+
+.taskName {
+    font-family: 'Handlee';
+    font-weight: 800 !important;
+    font-size: 30px;
+}
+
+.taskDate {
+    font-family: 'Handlee';
+    font-size: 15px;
+}
+
+/* .priorityStatus {
+
+} */
 
 .input-styling-box {
     font-size: 15px;
@@ -180,6 +210,9 @@ body {
 }
 
 #taskInputs {
+    width: 62%;
+}
+#dropdown {
     width: 62%;
 }
 
@@ -245,6 +278,7 @@ body {
 }
 .close-btn:hover {
     color: darkgray;
+    cursor: pointer;
 }
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 

@@ -1,5 +1,6 @@
-import { pl } from "date-fns/locale";
 import Project from './project'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import parse from 'date-fns/parse'
 
 class DOMController {
     constructor() {
@@ -61,6 +62,34 @@ class DOMController {
         return this.taskView;
     }
     
+    renderTask(name, date, description, priority) {
+        let item = document.createElement('div');
+        item.classList.add('task');
+
+        const t = document.createElement('div');
+        t.classList.add('taskDesc');
+        const taskName = document.createElement('div');
+        taskName.classList.add('taskName');
+        taskName.textContent = name;
+        const taskDueDate = document.createElement('div');
+        taskDueDate.classList.add('taskDate');
+        taskDueDate.textContent = date;
+        t.append(taskName, taskDueDate);
+
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('bn632-hover', 'bn26');
+        editBtn.innerHTML = '&hellip;';
+
+        const delBtn = document.createElement('button');
+        delBtn.classList.add('bn632-hover', 'bn27');
+        delBtn.innerHTML = '&times;';
+
+        // Description and buttons for each task
+        item.append(t, editBtn, delBtn);
+
+        return item;
+    }
+
     displayTasks(taskList) {
         const tasks = document.createElement('div');
         taskList.forEach(task => {
@@ -71,7 +100,9 @@ class DOMController {
             t.classList.add('taskDesc');
             const taskName = document.createElement('div');
             taskName.textContent = task.name;
+            taskName.classList.add('taskName');
             const taskDueDate = document.createElement('div');
+            taskDueDate.classList.add('taskDate');
             taskDueDate.textContent = task.dueDate;
             t.append(taskName, taskDueDate);
 
@@ -83,9 +114,15 @@ class DOMController {
             delBtn.classList.add('bn632-hover', 'bn27');
             delBtn.innerHTML = '&times;';
             // Description and buttons for each task
+
+            //priority strip 
+            const priority = document.createElement('div');
+            priority.classList.add('priorityStatus');
+
             item.append(t, editBtn, delBtn);
             tasks.appendChild(item);
         });
+
 
         const addTaskBtn = this.addProjectButton('Add Task')
         addTaskBtn.id = 'modal-btn';
@@ -115,12 +152,14 @@ class DOMController {
         const content = document.createElement('p');
         content.textContent = taskName;
         const addBtn = this.addProjectButton('Add');
+        addBtn.id = 'addTaskBtn'
         addBtn.classList.add('bn632-hover', 'bn26', 'form-btn');
+
         modalContent.append(
             closeBtn, 
             content,
-            this.createTaskInputs('Type a todo...', 'Name'),
-            this.createTaskInputs('Description...', 'Description'),
+            this.createTaskInputs('Type a todo...', 'Name', 'name'),
+            this.createTaskInputs('Description...', 'Description', 'description'),
             this.createDropDownInput(),
             this.createDateInput(),
             addBtn,
@@ -131,7 +170,7 @@ class DOMController {
     }
 
     // general input box  
-    createTaskInputs(dummyText, name) {
+    createTaskInputs(dummyText, name, id) {
         const inputContainer = document.createElement('div');
         inputContainer.classList.add('input-box');
         
@@ -139,7 +178,8 @@ class DOMController {
         title.textContent = name;
         title.classList.add('input-styling');
 
-        const input = document.createElement('input');
+        const input = document.createElement('INPUT');
+        input.id = id;
         input.classList.add('input-styling-box');
         input.placeholder = dummyText;
         inputContainer.append(title, input);
@@ -151,8 +191,8 @@ class DOMController {
         
         container.classList.add('input-box');
         const priority = document.createElement('SELECT');
-        priority.setAttribute('id', 'taskInputs');
-
+        priority.setAttribute('id', 'dropdown');
+        // priority.id = 'dropdown';
 
         const title = document.createElement('p');
         title.textContent = 'Priority';
@@ -183,6 +223,7 @@ class DOMController {
         title.classList.add('input-styling');
 
         const timeInput = document.createElement('INPUT');
+        timeInput.id = 'time';
         timeInput.setAttribute('type', 'date');
         date.append(title, timeInput);
         return date;
