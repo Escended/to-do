@@ -10,7 +10,6 @@ display.render();
 // container for all the projects
 let listOfProjects = [
     new Project('Default Project'),
-    new Project('Project 2'),
 ];
 
 const parseDate = (date) => {
@@ -25,23 +24,22 @@ const parseDate = (date) => {
 // Dummy tasks
 listOfProjects[0].addTask("Gym", parseDate('2020-12-20'));
 listOfProjects[0].addTask("Run", parseDate('2020-12-20'));
-listOfProjects[1].addTask("Eat", parseDate('2020-12-20'));
 display.addProject(listOfProjects[0]);
-display.addProject(listOfProjects[1]);
 // console.table(listOfProjects[0].tasks);
 
 let currentProject;
 
-const projects = document.querySelectorAll('.project');
+// projects = Array.prototype.slice(projects);
 const projectViewContainer = document.getElementById('taskView');
 
 const update = () => {
+    let projects = document.querySelectorAll('.project');
     let numOfClicks = 0;
     projects.forEach(project => {
         project.addEventListener('click', () => {
             const found = listOfProjects.find(proj => proj.name === project.innerHTML);
             currentProject = found;
-            console.log(currentProject);
+            // console.log(currentProject);
             if (typeof found !== 'undefined' && numOfClicks === 0) {
                 projectViewContainer.removeChild(projectViewContainer.lastChild);
                 display.displayTasks(found.tasks);
@@ -51,7 +49,13 @@ const update = () => {
                 display.displayTasks(found.tasks);
                 numOfClicks += 1;
             };
-            // #taskView > div > div:nth-child(1) > button.bn632-hover.bn27
+
+            // let buttons = document.getElementById('taskView');
+            // console.log(buttons.childNodes)
+            // if (buttons.length > 1) {
+            //     projectViewContainer.removeChild(projectViewContainer.lastChild)
+            // }
+
             const deleteButtons = document.querySelectorAll('button.bn27');
             let num = 0;
             deleteButtons.forEach(button => {
@@ -67,7 +71,7 @@ const update = () => {
                 })
                 num += 1;
             })
-            console.log(deleteButtons);
+
             let addTaskBtn = document.getElementById("modal-btn");
             let modal = document.querySelector(".modal");
             let closeBtn = document.querySelector(".close-btn");
@@ -95,7 +99,6 @@ const getInputValues = () => {
     const description = document.getElementById('description').value;
     const dropdown = document.getElementById('dropdown').value;
     const date = document.getElementById('time').value;
-    // console.log(name, description, dropdown);
     let dateParsed = parse(
         date,
         'yyyy-mm-dd',
@@ -106,7 +109,7 @@ const getInputValues = () => {
     return {name, d, description, dropdown};
 }
 
-update();
+
 let addBtn = document.getElementById('addTaskBtn');
 
 // store values from form
@@ -115,15 +118,15 @@ const addNewTask = () => {
         let modal = document.querySelector(".modal");
         let form = getInputValues();
         console.log(form);
-        currentProject.tasks.push(form);
-        modal.style.display = "none";
-        // projectViewContainer.appendChild()
+        currentProject.addTask(form.name, form.d)
         let t = display.renderTask(
             form.name,
             form.d, 
         )
         console.log(t);
         projectViewContainer.lastChild.appendChild(t);
+
+        // Connect delete button without re-rendering entire page
         let num = 0;
         const deleteButtons = document.querySelectorAll('button.bn27');
         deleteButtons.forEach(button => {
@@ -134,18 +137,51 @@ const addNewTask = () => {
                 console.table(currentProject.tasks);
                 let task = document.querySelector(`[data-id= "${index}"]`).parentNode
                 console.log(task);
-                // projectViewContainer.removeChild(task.parentNode);
                 projectViewContainer.lastChild.removeChild(task);
             })
             num += 1;
         })
-
+        console.table(listOfProjects);
     });
 };
 
+const addNewProject = () => {
+    // let projects = document.querySelectorAll('.project');
+    const addProjectBtn = document.getElementById('add-project');
+    const addProjectModal = document.getElementById('project-modal');
+    // const closeBtn = document.querySelector(".close-btn");
+    const closeBtn = document.querySelector('#project-modal > div:nth-child(1) > span:nth-child(1)')
+    const addBtn = document.getElementById('addProjectBtn');
 
-
-const removeTask = () => {
+    addProjectBtn.onclick = function () {
+        addProjectModal.style.display = "block";
+    };
+    closeBtn.onclick = function () {
+        addProjectModal.style.display = "none";
+        console.log('hi');
+    };
+    
+    window.onclick = function (e) {
+        if (e.target == addProjectModal) {
+            addProjectModal.style.display = "none";
+        }
+    };
+    addBtn.addEventListener('click', () => {
+        let input = document.getElementById('nameProj').value;
+        console.log(input);
+        listOfProjects.push(new Project(input));
+        addProjectModal.style.display = "none";
+        display.addProject(listOfProjects.slice(-1)[0]);
+        console.log(listOfProjects);
+        // console.log(projects);
+        // projects = document.querySelectorAll('.project');
+        update();
+        // projectViewContainer.removeChild(projectViewContainer.lastChild);
+        console.log(projectViewContainer);
+    })
 }
 
+
+addNewProject();
+update();
 addNewTask();

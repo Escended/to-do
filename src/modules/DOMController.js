@@ -22,6 +22,7 @@ class DOMController {
         
         const addProject = this.addProjectButton('Add Project');
         addProject.classList.add('bn632-hover', 'bn26', 'addProjectBtn');
+        addProject.id = 'add-project';
         this.navbar.append(addProject, this.CreateProjectsView())
         return this.navbar;
     }
@@ -85,7 +86,8 @@ class DOMController {
         delBtn.innerHTML = '&times;';
 
         // Description and buttons for each task
-        item.append(t, editBtn, delBtn);
+        item.append(t, delBtn);
+        // item.append(t, editBtn, delBtn);
 
         return item;
     }
@@ -106,9 +108,9 @@ class DOMController {
             taskDueDate.textContent = task.dueDate;
             t.append(taskName, taskDueDate);
 
-            const editBtn = document.createElement('button');
-            editBtn.classList.add('bn632-hover', 'bn26');
-            editBtn.innerHTML = '&hellip;';
+            // const editBtn = document.createElement('button');
+            // editBtn.classList.add('bn632-hover', 'bn26');
+            // editBtn.innerHTML = '&hellip;';
 
             const delBtn = document.createElement('button');
             delBtn.classList.add('bn632-hover', 'bn27');
@@ -119,7 +121,8 @@ class DOMController {
             const priority = document.createElement('div');
             priority.classList.add('priorityStatus');
 
-            item.append(t, editBtn, delBtn);
+            // item.append(t, editBtn, delBtn);
+            item.append(t, delBtn);
             tasks.appendChild(item);
         });
 
@@ -162,6 +165,36 @@ class DOMController {
             this.createTaskInputs('Description...', 'Description', 'description'),
             this.createDropDownInput(),
             this.createDateInput(),
+            addBtn,
+            );
+
+        modal.appendChild(modalContent);
+        return modal;
+    }
+
+    createModalViewProject(taskName) {
+
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.id = 'project-modal';
+
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
+        
+        const closeBtn = document.createElement('span');
+        closeBtn.classList.add('close-btn');
+        closeBtn.innerHTML = '&times;'
+
+        const content = document.createElement('p');
+        content.textContent = taskName;
+        const addBtn = this.addProjectButton('Add');
+        addBtn.id = 'addProjectBtn'
+        addBtn.classList.add('bn632-hover', 'bn26', 'form-btn');
+
+        modalContent.append(
+            closeBtn, 
+            content,
+            this.createTaskInputs('Project name..', 'Name', 'nameProj'),
             addBtn,
             );
 
@@ -236,6 +269,7 @@ class DOMController {
         this.createTaskView(),
         // this.createModalBtn(),
         this.createModalView('Add Task'),
+        this.createModalViewProject('Add Project')
         );
     }
 }
