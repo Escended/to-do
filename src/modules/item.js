@@ -4,8 +4,8 @@ class Item {
     constructor(name, dueDate) {
         this.name = name;
         this.dueDate = dueDate;
-        this.description = '';
-        this.priority = 'low';
+        this.description = "";
+        this.priority = "low";
         this.id = null;
     }
     get name() {
@@ -14,7 +14,7 @@ class Item {
 
     set name(value) {
         if (value.length > 10 || value.length < 2) {
-            return this._name = "Too long";
+            return (this._name = "Too long");
         }
         this._name = value;
     }
@@ -22,6 +22,5 @@ class Item {
     // get dueDate() {
     //     return this._dueDate;
     // }
-    
 }
 export default Item;

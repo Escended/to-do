@@ -1,9 +1,7 @@
-import Item from './item';
-import DOMController from './DOMController';
-
+import Item from "./item";
+import DOMController from "./DOMController";
 
 class Project {
-    
     constructor(name) {
         this.name = name;
         this.tasks = [];
@@ -15,21 +13,20 @@ class Project {
     }
 
     getTask(name) {
-        return this.tasks.find(element => element.name === name);
+        return this.tasks.find((element) => element.name === name);
     }
-    
-    setId(){
+
+    setId() {
         let index = 0;
-        this.tasks.forEach( task => {
+        this.tasks.forEach((task) => {
             task.id = index;
             index += 1;
-        })
+        });
     }
-    
+
     // removeTask(name) {
     //     this.tasks.pop
     // }
 }
 
 export default Project;
-
