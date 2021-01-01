@@ -157,12 +157,10 @@ const addNewProject = () => {
         listOfProjects.push(new Project(input));
         addProjectModal.style.display = "none";
         display.addProject(listOfProjects.slice(-1)[0]);
-        console.log(listOfProjects);
         // console.log(projects);
         // projects = document.querySelectorAll('.project');
         update();
         // projectViewContainer.removeChild(projectViewContainer.lastChild);
-        console.log(projectViewContainer);
     });
 };
 
